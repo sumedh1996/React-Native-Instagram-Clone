@@ -2,17 +2,17 @@
 import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
-        margin: 5
+        margin: 15
     },
     likes: {
         fontWeight: 'bold',
-        margin: 3
+        marginVertical: 7
 
     },
     captionContainer: {
 
         flexDirection: 'row',
-        margin: 3
+        marginVertical: 7
     },
     user: {
         fontWeight: 'bold'
@@ -26,7 +26,23 @@ const styles = StyleSheet.create({
         margin: 3
     },
     comments: {
-        color: 'gray'
+        color: 'gray',
+        marginVertical: 7
+    },
+    icon: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    left: {
+        flexDirection: 'row',
+        width: 100,
+        justifyContent: 'space-between'
+
+
+    },
+    right: {
+        marginRight: 15
     }
 })
 
