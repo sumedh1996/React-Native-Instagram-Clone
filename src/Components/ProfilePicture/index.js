@@ -2,11 +2,10 @@ import React from 'react'
 import { View, Text, Image } from 'react-native';
 import styles from './styles'
 
-export default function ProfilePicture() {
+export default function ProfilePicture({ uri, size = 70 }) {
     return (
-        <View>
-
-            <Image style={styles.image} source={{ uri: "https://generalimagestest.s3.us-east-2.amazonaws.com/f58160f6-bca3-4c35-a72d-f36011b1c366.JPG" }} />
+        <View style={[styles.container, { width: size + 6, height: size + 6 }]}>
+            <Image style={[styles.image, { width: size, height: size }]} source={{ uri }} />
         </View>
     )
 }
