@@ -10,19 +10,21 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 import {
   StatusBar,
-  View,Text, SafeAreaView
 } from 'react-native';
-import HomeScreen from './Screens/HomeScreen';
+
+import { NavigationContainer } from '@react-navigation/native';
+
+import Router from './Router'
+import Swipe from './Screens/Swipe';
 
 const App: () => React$Node = () => {
   return (
-    <>
+    <NavigationContainer>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-      <HomeScreen />
-      </SafeAreaView>
-      
-    </>
+      <Router />
+
+    </NavigationContainer>
+
   );
 };
 

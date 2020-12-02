@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, FlatList } from 'react-native'
 import ProfilePicture from '../ProfilePicture';
-import Story from '../Story'
+import Story from '../UserStoryPreview'
 import styles from './styles';
 
 const data = [

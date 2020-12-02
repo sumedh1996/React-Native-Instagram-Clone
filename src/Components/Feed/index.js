@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, FlatList } from 'react-native';
 import Post from '../Post/components';
-import Stories from '../Stories';
+import Stories from '../UserStoriesPreview';
 
 const data = [
     {
@@ -19,7 +19,7 @@ const data = [
     {
         user: {
             imageUri: "https://generalimagestest.s3.us-east-2.amazonaws.com/WhatsApp+Image+2020-11-07+at+10.10.40+AM.jpeg",
-            name: "Sumedh"
+            name: "Ashu"
         },
         imageUri: "https://picsum.photos/id/237/200/300",
         captions: "Best in the world!!!",
@@ -31,9 +31,9 @@ const data = [
     {
         user: {
             imageUri: "https://generalimagestest.s3.us-east-2.amazonaws.com/WhatsApp+Image+2020-11-07+at+10.10.40+AM.jpeg",
-            name: "Sumedh"
+            name: "Tushar"
         },
-        imageUri: "https://picsum.photos/id/237/200/300",
+        imageUri: "https://picsum.photos/200/300",
         captions: "Best in the world!!!",
         likesCount: 1455,
         posted: '6 min ago',
@@ -42,9 +42,9 @@ const data = [
     }, {
         user: {
             imageUri: "https://generalimagestest.s3.us-east-2.amazonaws.com/WhatsApp+Image+2020-11-07+at+10.10.40+AM.jpeg",
-            name: "Sumedh"
+            name: "Moti"
         },
-        imageUri: "https://picsum.photos/id/237/200/300",
+        imageUri: "https://picsum.photos/200/300",
         captions: "Best in the world!!!",
         likesCount: 1455,
         posted: '6 min ago',
