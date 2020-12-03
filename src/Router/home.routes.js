@@ -7,8 +7,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import FeatherIcons from 'react-native-vector-icons/Feather';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import logo from '../Assets/Images/logo.png'
-import StoryScreen from '../Components/UserStoryPreview';
 import { useNavigation } from '@react-navigation/native';
+import StoryScreen from '../Screens/Story';
 const HomeStack = createStackNavigator();
 
 
@@ -48,14 +48,11 @@ const HomeRoutes = () => {
                     },
                     headerTitle: () => (
                         <Image source={logo} resizeMode={'contain'} style={{
-                            width: 130
+                            width: 130, height: 50
                         }} />
                     )
                 }}
             />
-            <HomeStack.Screen
-                name="Story"
-                component={StoryScreen} />
         </HomeStack.Navigator>
     )
 }

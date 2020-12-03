@@ -4,12 +4,20 @@ import ProfilePicture from '../ProfilePicture';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/core';
 
-export default function StoryScreen({ imageUri, name }) {
+export default function UserStoryPreview({ story }) {
+
+    const {
+        user: {
+            imageUri,
+            name,
+            id
+        }
+    } = story;
 
     const navigation = useNavigation();
 
     const onPress = () => {
-        console.warn("Hello")
+        navigation.navigate('Story', { userId: id })
     }
 
     return (

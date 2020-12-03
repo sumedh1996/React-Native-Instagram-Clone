@@ -14,6 +14,7 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import HomeRoutes from './home.routes';
 import CameraScreen from '../Screens/Camera'
 import ChatsScreen from '../Screens/ChatsScreen'
+import StoryScreen from '../Screens/Story';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -37,6 +38,13 @@ const Router = () => (
         <Stack.Screen
             name="Chats"
             component={ChatsScreen}
+        />
+        <Stack.Screen
+            name="Story"
+            component={StoryScreen}
+            options={{
+                HeaderShown: false
+            }}
         />
     </Stack.Navigator>
 )
@@ -66,7 +74,7 @@ const Tabbb = () => (
             },
         })}
         tabBarOptions={{
-            activeTintColor: 'tomato',
+            activeTintColor: 'black',
             inactiveTintColor: 'gray',
             showLabel: false
         }}
