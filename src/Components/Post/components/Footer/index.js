@@ -7,12 +7,15 @@ import FontistoIcon from 'react-native-vector-icons/Fontisto';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import FAicon from 'react-native-vector-icons/FontAwesome'
 import CommentBar from '../CommentBar';
+import { API, graphqlOperation, Auth } from 'aws-amplify';
+import { getUser } from '../../../../../graphql/queries'
 
 
-export default function Footer({ likesCount, commentCount, captions, posted }) {
+export default function Footer({ likesCount, commentCount, caption, posted, user }) {
 
     const [isLiked, setIsLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(0);
+    const [loggedUser, setLoggedUser] = useState(null);
 
     const onLikePressed = () => {
 
@@ -25,6 +28,25 @@ export default function Footer({ likesCount, commentCount, captions, posted }) {
 
     useEffect(() => {
         setLikeCount(likesCount);
+    }, [])
+
+    useEffect(() => {
+
+        const getLoggedUserDetails = async () => {
+            const userInfo = await Auth.currentAuthenticatedUser();
+
+            console.log(userInfo);
+            const currentLoggedinUser = await API.graphql(
+                graphqlOperation(
+                    getUser, {
+                        id: userInfo.attributes.sub,
+                    }
+                )
+            )
+
+            setLoggedUser(currentLoggedinUser.data.getUser);
+        }
+        getLoggedUserDetails();
     }, [])
 
     return (
@@ -48,11 +70,12 @@ export default function Footer({ likesCount, commentCount, captions, posted }) {
             </View>
             <Text style={styles.likes}>{likeCount} likes</Text>
             <View style={styles.captionContainer}>
-                <Text style={styles.user}>UserName</Text>
-                <Text style={styles.captions}>{captions}</Text>
+                <Text style={styles.user}>{user.name}  </Text>
+                <Text style={styles.captions}>{caption}</Text>
             </View>
             <Text style={styles.comment}>View all {commentCount} comments</Text>
-            <CommentBar />
+            {loggedUser ? <CommentBar image={loggedUser.image} /> : null
+            }
             <Text style={styles.posted}>{posted}</Text>
         </View>
     )

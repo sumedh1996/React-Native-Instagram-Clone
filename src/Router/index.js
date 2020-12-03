@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react'
 import NotificationScreen from '../Screens/NotificationScreen';
 import PostScreen from '../Screens/PostScreen';
 import ProfileScreen from '../Screens/ProfileScreen';
@@ -15,6 +16,9 @@ import HomeRoutes from './home.routes';
 import CameraScreen from '../Screens/Camera'
 import ChatsScreen from '../Screens/ChatsScreen'
 import StoryScreen from '../Screens/Story';
+import { API, graphqlOperation, Auth } from 'aws-amplify';
+import { getUser } from '../../graphql/queries';
+import ProfilePicture from '../Components/ProfilePicture'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -49,9 +53,30 @@ const Router = () => (
     </Stack.Navigator>
 )
 
-const Tabbb = () => (
+const Tabbb = () => {
 
-    <Tab.Navigator
+    const [loggedUser, setLoggedUser] = useState(null);
+
+    useEffect(() => {
+
+        const getLoggedUserDetails = async () => {
+            const userInfo = await Auth.currentAuthenticatedUser();
+
+            console.log(userInfo);
+            const currentLoggedinUser = await API.graphql(
+                graphqlOperation(
+                    getUser, {
+                        id: userInfo.attributes.sub,
+                    }
+                )
+            )
+
+            setLoggedUser(currentLoggedinUser.data.getUser);
+        }
+        getLoggedUserDetails();
+    }, [])
+
+    return (<Tab.Navigator
         screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
 
@@ -68,7 +93,9 @@ const Tabbb = () => (
                     return <AntIcons name="heart" size={size} color={color} />
                 }
                 if (route.name === 'Profile') {
-                    return <FontAwesomeIcon name="user" size={size} color={color} />
+                    return loggedUser ?
+                        <ProfilePicture uri={loggedUser.image} size={20} /> :
+                        <FontAwesomeIcon name="user" size={size} color={color} />
                 }
 
             },
@@ -84,6 +111,6 @@ const Tabbb = () => (
         <Tab.Screen name="Post" component={PostScreen} />
         <Tab.Screen name="Notification" component={NotificationScreen} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
-    </Tab.Navigator>
-)
+    </Tab.Navigator>)
+}
 export default Router;

@@ -1,18 +1,20 @@
 import React from 'react'
-import { View, Text, TouchableWithoutFeedback } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import ProfilePicture from '../ProfilePicture';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/core';
 
-export default function UserStoryPreview({ story }) {
+export default function UserStoryPreview(props) {
 
     const {
-        user: {
-            imageUri,
-            name,
-            id
+        story: {
+            user: {
+                id,
+                image,
+                name
+            }
         }
-    } = story;
+    } = props;
 
     const navigation = useNavigation();
 
@@ -21,11 +23,9 @@ export default function UserStoryPreview({ story }) {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={onPress}>
-            <View style={styles.container}>
-                <ProfilePicture uri={imageUri} />
-                <Text style={styles.text}>{name}</Text>
-            </View>
-        </TouchableWithoutFeedback>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
+            <ProfilePicture uri={image} />
+            <Text style={styles.name}>{name}</Text>
+        </TouchableOpacity>
     )
 }

@@ -4,17 +4,17 @@ import Header from './Header';
 import Body from './Body';
 import Footer from './Footer';
 
-export default function Post({post}) {
+export default function Post({ post }) {
 
     return (
         <View>
-            <Header name={post.user.name} imageUri={post.user.imageUri} />
-            <Body imageUri={post.imageUri}/>
-            <Footer 
-                likesCount={post.likesCount} 
-                commentCount={post.commentCount}
-                captions={post.captions}
-                posted={post.posted}
+            <Header imageUri={post.user.image} name={post.user.name} />
+            <Body imageUri={post.image} />
+            <Footer
+                likesCount={post.likes}
+                caption={post.caption}
+                postedAt={post.createdAt}
+                user={post.user}
             />
         </View>
     )

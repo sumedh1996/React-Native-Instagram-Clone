@@ -7,11 +7,13 @@ import IonIcons from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
 
 
-export default function CommentBar() {
+export default function CommentBar(props) {
+
+    const { image } = props;
     return (
         <View style={styles.container}>
             <View style={styles.left}>
-                <ProfilePicture uri={"https://generalimagestest.s3.us-east-2.amazonaws.com/NordAvatar.png"} size={20} />
+                <ProfilePicture uri={image} size={20} />
                 <TextInput
                     placeholder="Add a comment..."
                 />

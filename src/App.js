@@ -15,7 +15,7 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 
 import Router from './Router'
-import Swipe from './Screens/Swipe';
+import { withAuthenticator } from 'aws-amplify-react-native'
 
 const App: () => React$Node = () => {
   return (
@@ -29,4 +29,4 @@ const App: () => React$Node = () => {
 };
 
 
-export default App;
+export default withAuthenticator(App)
